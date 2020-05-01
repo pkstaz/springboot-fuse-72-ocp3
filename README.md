@@ -1,49 +1,91 @@
-# Spring-Boot Camel QuickStart
+WildFly Camel Spring XML Web Application
+=============
 
-This example demonstrates how you can use Apache Camel with Spring Boot.
+This is a template Apache Camel Spring application for the WildFly Camel subsystem. 
 
-The quickstart uses Spring Boot to configure a little application that includes a Camel route that triggers a message every 5th second, and routes the message to a log.
+This project is setup to allow you to create a Apache Camel Spring application, which can be deployed to an application
+server running the WildFly Camel subsystem. An example Spring XML Camel Route has been created for you, together with an Arquillian
+integration test.
 
-### Building
+Prerequisites
+=============
 
-The example can be built with
+* Minimum of Java 1.7
+* Maven 3.2 or greater
+* JBoss EAP 6.4
+
+
+Getting started at the Command Line
+------------------------------------
+
+1. Install Red Hat Fuse on your application server
+
+2. Configure a $JBOSS_HOME environment variable to point at your application server installation directory
+
+3. Start the application server from the command line
+
+For Linux:
+
+    $JBOSS_HOME/bin/standalone.sh -c standalone.xml
+
+For Windows:
+
+    %JBOSS_HOME%\bin\standalone.bat -c standalone.xml
+
+
+Building the application
+------------------------
+
+To build the application do:
 
     mvn clean install
 
-### Running the example in OpenShift
 
-It is assumed that:
-- OpenShift platform is already running, if not you can find details how to [Install OpenShift at your site](https://docs.openshift.com/container-platform/3.3/install_config/index.html).
-- Your system is configured for Fabric8 Maven Workflow, if not you can find a [Get Started Guide](https://access.redhat.com/documentation/en/red-hat-jboss-middleware-for-openshift/3/single/red-hat-jboss-fuse-integration-services-20-for-openshift/)
+Run Arquillian Tests
+--------------------
+    
+By default, tests are configured to be skipped as Arquillian requires the use of a container.
 
-The example can be built and run on OpenShift using a single goal:
+If you already have a running application server, you can run integration tests with:
 
-    mvn fabric8:deploy
+    mvn clean test -Parq-remote
 
-When the example runs in OpenShift, you can use the OpenShift client tool to inspect the status
+Otherwise you can get Arquillian to start and stop the server for you (Note: you must have $JBOSS_HOME configured beforehand):
 
-To list all the running pods:
+    mvn clean test -Parq-managed
 
-    oc get pods
 
-Then find the name of the pod that runs this quickstart, and output the logs from the running pods with:
+Deploying the application
+-------------------------
 
-    oc logs <name of pod>
+To deploy the application to a running application server do:
 
-You can also use the OpenShift [web console](https://docs.openshift.com/container-platform/3.3/getting_started/developers_console.html#developers-console-video) to manage the
-running pods, and view logs and much more.
+    mvn clean package wildfly:deploy
 
-### Running via an S2I Application Template
+The server console should display lines like the following:
 
-Application templates allow you deploy applications to OpenShift by filling out a form in the OpenShift console that allows you to adjust deployment parameters.  This template uses an S2I source build so that it handle building and deploying the application for you.
+    (MSC service thread 1-16) Apache Camel (CamelContext: spring-context) is starting
+    (MSC service thread 1-16) Camel context starting: spring-context
+    (MSC service thread 1-6) Bound camel naming object: java:jboss/camel/context/spring-context
+    (MSC service thread 1-16) Route: route4 started and consuming from: Endpoint[direct://start]
+    (MSC service thread 1-16) Total 1 routes, of which 1 is started
 
-First, import the Fuse image streams:
 
-    oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/GA/fis-image-streams.json
+Access the application
+----------------------
 
-Then create the quickstart template:
+The application will be available at http://localhost:8080/your-context-root?name=Kermit
 
-    oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/GA/quickstarts/spring-boot-camel-template.json
 
-Now when you use "Add to Project" button in the OpenShift console, you should see a template for this quickstart. 
+Undeploying the application
+---------------------------
 
+    mvn wildfly:undeploy
+
+
+Further reading
+---------------
+
+Apache Camel documentation
+
+https://camel.apache.org/

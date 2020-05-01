@@ -1,0 +1,6 @@
+/home/cestay/redhat/agile_integration_advanced_labs/code/fuse/02_rest_split_transform_amq/rest-split-transform-amq-lab/src/main/java/org/globex/Contact.java
+/home/cestay/redhat/agile_integration_advanced_labs/code/fuse/02_rest_split_transform_amq/rest-split-transform-amq-lab/src/main/java/org/acme/Customer.java
+/home/cestay/redhat/agile_integration_advanced_labs/code/fuse/02_rest_split_transform_amq/rest-split-transform-amq-lab/src/main/java/org/globex/Company.java
+/home/cestay/redhat/agile_integration_advanced_labs/code/fuse/02_rest_split_transform_amq/rest-split-transform-amq-lab/src/main/java/org/globex/Account.java
+/home/cestay/redhat/agile_integration_advanced_labs/code/fuse/02_rest_split_transform_amq/rest-split-transform-amq-lab/src/main/java/com/redhat/training/gpte/springboot/Application.java
+/home/cestay/redhat/agile_integration_advanced_labs/code/fuse/02_rest_split_transform_amq/rest-split-transform-amq-lab/src/main/java/com/redhat/training/gpte/springboot/AMQPConfiguration.java

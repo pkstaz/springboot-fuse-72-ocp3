@@ -6,11 +6,11 @@
     
     
     	<restConfiguration bindingMode="off" component="servlet" contextPath="/api"/>
-        <rest id="service" path="/device">
-            <post consumes="application/json" id="getdeviceDetails" uri="/getdevicedetails/v1_0">
-                <to uri="direct:inbox"/>
+        <rest id="service" path="/device/getdevicedetails">
+            <post consumes="application/json" id="getdeviceDetails" uri="/v1_0">
+                <to uri="direct:mainRoute"/>
             </post>
-            <get id="getping" uri="/getdevicedetails/ping">
+            <get id="getping" uri="/ping">
                 <route>
                     <log message="PING OK"/>
                 </route>

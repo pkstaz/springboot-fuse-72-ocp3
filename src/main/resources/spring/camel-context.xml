@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring.xsd">
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <restConfiguration bindingMode="off" component="servlet" contextPath="/rest"/>
+        <rest id="service" path="/service">
+            <post consumes="text/html" id="customers" uri="/customers">
+                <to uri="direct:inbox"/>
+            </post>
+            <get id="getping" uri="/ping">
+                <route>
+                    <log message="PING OK"/>
+                </route>
+            </get>
+        </rest>
+        <route id="inbox" streamCache="true">
+            <from id="_from1" uri="direct:inbox"/>
+            <log id="_log1" message="Inicio Body: ${body}"/>
+            <log id="route-log" message=">>> ${body}"/>
+        </route>
+    </camelContext>
+</beans>

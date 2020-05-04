@@ -10,6 +10,6 @@ items:
     tags:
     - from:
         kind: ImageStreamImage
-        name: camel-ose-springboot-xml@sha256:1910e3b8bd125d26bdfb913cb9c912913346791f4795118eb342fcd6e210951d
+        name: camel-ose-springboot-xml@sha256:c01a5b8f03044d1cffb87234bc5de47f768c33f6c51ebea128ca2a21948ff076
         namespace: uscc
       name: latest
